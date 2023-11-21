@@ -200,8 +200,9 @@ function updateDetectionPositions() {
 let isFullWindow = false;
 
 function toggleFullWindow() {
-    let container = document.getElementById('videoContainer'); // Your video container ID
-    let videoView = document.querySelector('.videoView'); // Add this line if .videoView is the parent of detection elements
+    let container = document.getElementById('videoContainer');
+    let videoView = document.querySelector('.videoView');
+    let fullWindowButton = document.getElementById('fullWindowButton'); // Get the button element
     isFullWindow = !isFullWindow;
 
     if (isFullWindow) {
@@ -210,21 +211,23 @@ function toggleFullWindow() {
         container.style.height = '100%';
         container.style.top = '0';
         container.style.left = '0';
-        fullWindowButton.style.bottom = '10px'; // or the position you want in full window
-        fullWindowButton.style.right = '10px'; // or the position you want in full window
+        fullWindowButton.style.bottom = '10px';
+        fullWindowButton.style.right = '10px';
 
-        videoView.style.position = 'static'; // This makes sure that it doesn't affect the absolute positioning
+        videoView.style.position = 'static';
+        fullWindowButton.textContent = '↙ Toggle Full Window'; // Change text when in full window
     } else {
         container.style.position = 'relative';
-        container.style.width = 'initial'; // or your default width
-        container.style.height = 'initial'; // or your default height
+        container.style.width = 'initial';
+        container.style.height = 'initial';
         container.style.top = 'initial';
         container.style.left = 'initial';
         container.style.zIndex = 'initial';
-        videoView.style.position = 'relative'; // Or whatever it needs to be outside of fullscreen
-        fullWindowButton.style.bottom = '-25px'; // reset to default
-        fullWindowButton.style.right = '0px'; // or the position you want in full window
+        videoView.style.position = 'relative';
+        fullWindowButton.style.bottom = '-25px';
+        fullWindowButton.style.right = '0px';
 
+        fullWindowButton.textContent = '↘ Toggle Full Window'; // Reset text when not in full window
     }
 
     updateDetectionPositions();
@@ -235,14 +238,22 @@ const muteButton = document.getElementById('muteButton');
 const videoElement = document.getElementById('webcam'); // Assuming this is your video/audio element
 
 muteButton.addEventListener('click', function() {
-  if (videoElement.muted) {
-    videoElement.muted = false;
-    muteButton.textContent = 'MUTE';
-  } else {
-    videoElement.muted = true;
-    muteButton.textContent = 'UNMUTE';
-  }
+    // Add the animation class
+    muteButton.classList.add('click-blur-animation');
+
+    // Change text halfway through the animation ( the total duration )
+    setTimeout(() => {
+        videoElement.muted = !videoElement.muted; // Toggle the muted state
+        muteButton.textContent = videoElement.muted ? 'UNMUTE' : 'MUTE'; // Update the button text
+    }, 500); // Half of your animation duration
+
+    // Remove the class after animation ends to allow it to run again on subsequent clicks
+    muteButton.addEventListener('animationend', function() {
+        muteButton.classList.remove('click-blur-animation');
+    }, {once: true});
 });
+
+
 
 window.addEventListener('resize', function() {
     if (isFullWindow) {

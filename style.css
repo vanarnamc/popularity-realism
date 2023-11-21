@@ -262,15 +262,20 @@ section {
   transform: translate(-50%, -50%); /* Center the label */
   text-align: center;
   /* Additional styles for visibility and aesthetics */
-  color: #ffffff;
+  color: #fefefe;
   padding: 4px;
   background: rgba(0, 0, 0);
   font-size: 0.75em;
   font-weight: bold;
   white-space: nowrap;
   user-select: none;
+  font-family: "SuisseIntl-Reg";
+
+  
   z-index: 10;
 }
+
+
 
 #fullWindowButton {
   font-family: "SuisseIntl-Nav";
@@ -324,4 +329,21 @@ flex-wrap: wrap;
   font-size: 28px;
   margin-right:30px;
   color: #ffffff;
+}
+
+/* CSS for the blur effect */
+.click-blur-animation {
+  animation: blurEffect 1s ease-out;
+}
+
+@keyframes blurEffect {
+  0% {
+      filter: blur(0);
+  }
+  50% {
+      filter: blur(20px);
+  }
+  100% {
+      filter: blur(0);
+  }
 }
