@@ -1,0 +1,327 @@
+/* Copyright 2023 The MediaPipe Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
+
+@use "@material";
+body {
+  font-family: roboto;
+  margin: 0;
+  color: #3d3d3d;
+  --mdc-theme-primary: #007f8b;
+  --mdc-theme-on-primary: #f1f3f4;
+}
+
+@font-face {
+  font-family: "SuisseIntl-Nav";
+  src: url("fonts/Suisse Int’l Condensed Regular.otf");
+}
+
+@font-face {
+  font-family: "SuisseIntl-About";
+  src: url("fonts/Suisse\ Int’l\ Condensed\ Medium.otf");
+}
+
+@font-face {
+  font-family: "SuisseIntl-Reg";
+  src: url("fonts/Suisse Int'l Regular.otf");
+}
+
+nav{
+  font-family: "SuisseIntl-Nav";
+  color: white;
+}
+#footer .clickable-text {
+  font-family: "SuisseIntl-Nav";
+  color: white;
+  cursor: pointer;
+  /* Add more styles as needed */
+}
+
+#footer .clickable-text:hover {
+  text-decoration: underline;
+  /* Add more styles as needed */
+}
+
+
+
+a {
+  text-decoration: none; /* Remove underlines */
+  color: inherit; /* Inherit text color */
+  font-weight: inherit; /* Inherit font weight */
+  /* Add any other CSS properties you want to reset or customize */
+}
+
+a:hover {
+  text-decoration: underline; /* Add underline on hover */
+} 
+
+body{
+  background-color: #000000;
+}
+
+#container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  height: 45px; /* Adjust the height as needed */
+}
+
+
+#footer {
+  width: 100%;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  justify-content: right;
+  box-sizing: border-box; /* Ensures padding and border are included in the width/height */
+  padding: 10px; /* Add padding inside the navbar */
+  margin: 10px;
+  width: calc(100% - 20px); /* Adjusts the width to account for margin */
+
+}
+h1 {
+  color: #007f8b;
+}
+
+h2 {
+  clear: both;
+}
+
+em {
+  font-weight: bold;
+}
+
+video {
+  /* opacity: 0.2; */
+  background-color: black;
+  clear: both;
+  display: block;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
+
+#liveView {
+
+  display: flex;
+  width: 65%;
+  justify-content: center; /* This will center the content horizontally */
+  align-items: center; /* This will center the content vertically */
+}
+/* Style for the canvas */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+section {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+
+.mdc-button.mdc-button--raised.removed {
+  display: none;
+}
+
+.invisible {
+  opacity: 0.2;
+}
+
+.videoView,
+.detectOnClick {
+  position: relative;
+  float: left;
+  width: 48%;
+  margin: 2% 1%;
+  /* cursor: pointer; */
+}
+
+.detectOnClick p {
+  position: absolute;
+  padding: 5px;
+  background-color: #007f8b;
+  color: #fff;
+  border: 1px dashed rgba(255, 255, 255, 0.7);
+  z-index: 2;
+  font-size: 12px;
+  margin: 0;
+}
+
+#videoContainer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#vid-margin{
+  display:flex;
+  justify-content: center;
+}
+#webcam {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Styles for the welcome screen to cover the entire viewport */
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers vertically in the container */
+  align-items: center; /* Centers horizontally in the container */
+  position: fixed; /* Position relative to the viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the div in the viewport */
+  width: 100vw; /* 50% of the viewport width */
+  height: 70vh; /* 50% of the viewport height */
+  background-color: #00FF00; /* The green background color */
+  color: white; /* Text color */
+  z-index: 1000; /* Ensures it's on top of other content */
+}
+
+#welcomeText {
+  font-family: "SuisseIntl-About";
+  text-align: center;
+  color: #000000; /* Adjust color as needed */
+  font-size: 42px;
+  line-height:1;
+  /* Any additional styling you want */
+}
+#welcomeText:hover{
+  cursor: pointer; /* Change cursor to indicate clickability */
+  text-decoration: underline ;
+}
+
+.hidden {
+  display: none;
+}
+
+.videoView p {
+  position: absolute;
+  /* padding-bottom: 5px;
+  padding-top: 5px; */
+  background-color: #000000;
+  color: #ffffff;
+  z-index: 2;
+  font-size: 32px;
+  margin: 0;
+}
+
+.highlighter {
+  background: rgba(0, 255, 0, 1); /* No transparency */
+  border: 1px solid #fff;
+  position: absolute;
+  z-index: 5; /* Make sure this is below the z-index of .detection-label */
+}
+
+.person-highlight{
+  background: rgba(255, 255, 0, 0); /* No transparency */
+  border: 1px solid #fff;
+  position: absolute;
+  
+  z-index: 20; /* Make sure this is below the z-index of .detection-label */
+}
+
+
+.detectOnClick {
+  z-index: 0;
+}
+
+.detectOnClick img {
+  width: 100%;
+}
+
+
+.videoView .detection-label {
+  /* Your styles here will have higher specificity */
+  font-size: 1em; /* Example font size */
+  /* ... other properties ... */
+  position: absolute;
+  transform: translate(-50%, -50%); /* Center the label */
+  text-align: center;
+  /* Additional styles for visibility and aesthetics */
+  color: #ffffff;
+  padding: 4px;
+  background: rgba(0, 0, 0);
+  font-size: 0.75em;
+  font-weight: bold;
+  white-space: nowrap;
+  user-select: none;
+  z-index: 10;
+}
+
+#fullWindowButton {
+  font-family: "SuisseIntl-Nav";
+  color:white;  
+  position: absolute; /* Position the button absolutely within the video container */
+  bottom: -25px; /* Distance from the bottom of the video container */
+  right: 0px; /* Distance from the right of the video container */
+  z-index: 30; /* Ensure it's above other elements */
+}
+
+#fullWindowButton:hover {
+  text-decoration: underline; /* Adds an underline on hover for visual feedback */
+  cursor: pointer;
+  /* Other hover effects */
+}
+
+
+  #infoIcon {
+    height: 100%; /* SVG icon will take the full height of the navbar */
+    max-height: 100%; /* Ensures it doesn't exceed the navbar height */
+    cursor: pointer;
+  }
+
+#infoIconLink:hover #infoIcon {
+  /* Invert colors on hover */
+  filter: invert(100%);
+}
+
+#infoIconLink {
+  height: 100%;
+  
+}
+
+#about-columns{
+  display: flex;
+flex-wrap: wrap;
+}
+
+#about-image {
+  flex: 1;
+  max-width: 50%; /* Adjust this value for image column width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-content {
+  flex: 1;
+  max-width: 50%; /* Adjust this value for text column width */
+  font-family: "SuisseIntl-About";
+  font-size: 28px;
+  margin-right:30px;
+  color: #ffffff;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MediaPipe Object Detection for Web</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+ <!-- Welcome Screen -->
+ <div id="welcomeScreen" class="welcome-screen">
+  <div id="welcomeText">
+    <p>WELCOME.<br>
+    ↳ PLEASE ENABLE YOUR WEB CAMERA</p>
+  </div>
+</div>
+
+  <!-- Main Content Container -->
+  <div id="container" class="hidden">
+    <!-- Navbar -->
+    <nav id="navbar">
+      <div><a href="index.html">POPULARITY AND REALISM</a></div>
+      <a href="about.html" id="infoIconLink">
+        <img src="icons/infoicon.svg" alt="Info" id="infoIcon"/>
+      </a>
+    </nav>
+
+    <!-- Video View -->
+    <div id="vid-margin">
+      <div id="liveView" class="videoView">
+        <span id="fullWindowButton">↘ Toggle Full Window</span>
+        <div id="videoContainer">
+          <video id="webcam" autoplay playsinline></video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <span id="muteButton" class="clickable-text">MUTE</span>
+    </footer>
+  </div>
+
+  <!-- JavaScript for toggling visibility -->
+  
+
+  <!-- Material Components Web script -->
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <!-- Your custom script -->
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
